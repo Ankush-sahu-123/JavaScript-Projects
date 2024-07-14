@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Strong Password Generator</title>
+</head>
+<body>
+   
+    <div class="container">
+        <h1>Generate a</h1>
+        <h1><span>Random Password</span></h1>
+        <div class="display">
+            <input type="text" placeholder="Password" id="Password">
+            <button onclick="copyPassword()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" style="fill: rgb(0, 0, 0);"><path d="M20 2H10c-1.103 0-2 .897-2 2v4H4c-1.103 0-2 .897-2 2v10c0 1.103.897 2 2 2h10c1.103 0 2-.897 2-2v-4h4c1.103 0 2-.897 2-2V4c0-1.103-.897-2-2-2zM4 20V10h10l.002 10H4zm16-6h-4v-4c0-1.103-.897-2-2-2h-4V4h10v10z"></path></svg>
+            </button>
+        </div>
+        <button onclick="createPassword()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" style="fill: rgb(253, 253, 253);"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm-1 16v-5H7l6-7v5h4l-6 7z"></path></svg>
+            <h3>Generate Password</h3>
+        </button>
+    </div>
+
+    <style>
+        *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body{
+    background-color: #002339;
+    width: 90%;
+}
+
+.container{
+    margin-top: 200px;
+    margin-left: 10vw;
+    width: 400px;
+
+}
+
+h1{
+    font-size: 40px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+h1 span{
+    color: #30e657;
+    border-bottom: 4px solid ;
+    padding-bottom: 10px;
+}
+
+.display{
+    width: 100%;
+    display: flex;
+    background-color: #fcfafa;
+    align-items: center;
+    justify-content:space-between;
+    margin-top: 45px;
+    margin-bottom: 25px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.display input{
+    font-size: 20px;
+    width: 70%;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+}
+
+.display button{
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+
+
+button{/* 
+    font-size: 14px; */
+    background-color: #56aa68;
+
+    color: #fff;
+    border: 0;
+    outline: 0;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    gap: 10px;
+    justify-content: space-between;
+    cursor:pointer;
+}
+
+@media only screen and (max-width: 620px){
+    .container{
+    margin-top: 100px;
+    width: 80vw;
+    }
+
+    h1{
+        font-size: 8vw;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+    .display{
+        display: flex;
+        background-color: #fcfafa;
+        align-items: center;
+        justify-content:space-between;
+        margin-top: 45px;
+        margin-bottom: 25px;
+        padding: 20px;
+        border-radius: 5px;
+    }
+}
+    </style>
+
+
+
+    <script>
+        const passwordBox = document.getElementById("Password");
+        const length = 12 ;
+
+        const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        const lowerCase = "abcdefghijklmnopkrstuvwxyz";
+        const number = "0123456789"
+        const symbol = "!@#$%^&*()_+=}|{[]\}:'<>?,./~`'";
+
+        const allChars = upperCase + lowerCase + number + symbol;
+       
+
+        function createPassword(){
+            
+            let password ="";
+            password += upperCase[Math.floor(Math.random()*upperCase.length)];
+            password += lowerCase[Math.floor(Math.random()*lowerCase.length)];
+            password += number[Math.floor(Math.random()*number.length)];
+            password += symbol[Math.floor(Math.random()*symbol.length)];
+            
+            while(password.length < 12){
+                password += allChars[Math.floor(Math.random()*allChars.length)];
+            }
+             passwordBox.value = password;
+        }
+
+        function copyPassword(){
+            passwordBox.select();
+            document.execCommand("copy");
+        }
+
+
+
+    </script>
+
+
+
+</body>
+</html>
